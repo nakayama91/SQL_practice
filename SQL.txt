@@ -13,3 +13,9 @@ where price is not null //priceが空欄でないデータを呼び出す
 where not character_name = "ひつじ"　//character_nameがひつじでないデータを呼び出す
 where purchased_at <= "2017-08-01" //日付以前のデータを呼び出す
 where name LIKE "%プリン%"　//プリンを含むデータを呼び出す
+
+//グループ化、
+select sum(price), character_name, purchases_at
+from purchases
+where category = '雑費'
+group by character_name, purchases_at

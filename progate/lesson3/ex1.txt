@@ -1,0 +1,47 @@
+ ex1
+//　選手名と慎重を抽出。asを使い、表示するカラム名を変更可能
+SELECT name as "選手名", height as "身長"
+
+//　プレイヤーテーブルから抽出
+FROM players
+
+//　サブクエリを使用。平均体重以上のプレイヤーを指定。
+where height > (
+  select avg(height)
+  from players
+);
+
+ex2-----------------------------------------------------------------
+// 全てのデータを抽出
+SELECT *
+
+//　プレイヤーテーブルから抽出
+FROM players
+
+//　プレイヤーテーブルとカントリーテーブルを結合
+join countries
+
+//プレイヤーテーブルのplayers.country_idとカントリーテーブルのcountries.idは同一のカラムとして結合
+on players.country_id = countries.id
+
+//　カントリーネームが日本で、プレイヤーの身長が180以上のデータを指定。
+where countries.name = "日本"
+and players.height >= 180
+;
+
+ex3-----------------------------------------------------------------
+// カントリーネームと平均点を抽出。asにより、カラムの表示が、”国名”と”平均得点”となる。
+SELECT countries.name as "国名", avg(goals) as "平均得点"
+
+//　プレイヤーテーブルから抽出
+FROM players
+
+//　プレイヤーテーブルとカントリーテーブルを結合
+join countries
+
+//　プレイヤーテーブルのplayers.country_idと、カントリーテーブルのcountries.idを同一カラムとして結合
+on players.country_id = countries.id
+
+//　group byにより、countires.nameでグループ化、平均点の取得が可能
+group by countries.name
+;

@@ -19,3 +19,4 @@ select sum(price), character_name, purchases_at
 from purchases
 where category = '雑費'
 group by character_name, purchases_at
+;

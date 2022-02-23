@@ -1,0 +1,16 @@
+// 取得
+select カラムA, カラムB
+from テーブル名；
+
+//　挿入
+insert into テーブル名（カラムA,カラムB）
+values("値1", "値2")；
+
+//　更新
+update テーブル名
+set カラムA = 値1,　カラムB = 値2
+WHERE 条件；　//条件にはID等を指定する
+
+//　削除
+delete from テーブル名
+where 条件；　//条件にはID等を指定する

@@ -1,0 +1,39 @@
+//　売れた数が多い上位５商品のidと個数を取得
+select item_id, count(item_id)
+from sales_records
+group by item_id
+order by count(item_id) desc
+limit 5
+;
+
+//  売れた数が多い上位5商品のIDと名前、個数を取得
+select item_id, items.name, count(item_id)
+from sales_records
+join items
+on sales_records.item_id = items.id
+group by item_id
+order by count(item_id) desc
+limit 5
+;
+
+//　総売上と総利益を取得
+select sum(items.price) as "総売上", sum(items.price-items.cost) as "総利益"
+from sales_records
+join items
+on sales_records.item_id = items.id
+;
+
+//　日ごとの販売個数とその日付を取得
+select purchased_at, count(purchased_at) as "販売個数"
+from sales_records
+group by purchased_at
+order by purchased_at asc
+;
+
+//　日ごとの売り上げ額とその日付を取得
+select purchased_at, sum(price) as "売上額"
+from sales_records
+join items
+on sales_records.item_id = items.id
+group by purchased_at
+;

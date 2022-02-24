@@ -1,0 +1,73 @@
+// ユーザー全体の平均年齢を取得
+select avg(age)
+
+// usersテーブルを選択
+from users
+;
+
+//　20歳未満の男性ユーザーの、全てのカラムの値を取得
+select *
+from users
+where age < 20
+and gender = 0
+;
+
+// ユーザーの年齢と、その年齢ごとの人数を取得
+select age, count(age)
+from users
+group by age
+;
+
+// 全商品の名前を重複なく取得
+select distinct(name)
+from items
+;
+
+// 全商品の名前と値段を、値段が高い順に並べる
+select name, price
+from items
+order by price desc
+;
+
+// 名前の一部に「シャツ」を含む商品の、全てのカラムを取得
+select *
+from items
+where name like "%シャツ%"
+
+//　全商品の名前、値段、利益を取得
+select name, price, price-cost
+from items
+;
+
+//　全商品の利益の平均を取得
+select avg(price-cost)
+from items
+;
+
+//　各商品あたりの利益が上位5件の商品の名前と利益を取得
+select name, price-cost
+from items
+order by price-cost desc
+limit 5
+;
+
+// グレーパーカーより値段が高い商品の名前と値段を取得
+select name, price
+from items
+where price > (
+  select price
+  from items
+  where name like "%グレーパーカー%"
+　)
+;
+
+//  7000円以下で、グレーパーカーより利益が高い商品を取得
+select name, price-cost
+from items
+where price <= 7000
+and price-cost > (
+  select price-cost
+  from items
+  where name like "%グレーパーカー%"
+  )
+;

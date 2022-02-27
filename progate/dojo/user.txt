@@ -1,4 +1,4 @@
--- 10個以上購入したユーザーIDとユーザー名、購入した商品の数を取得
+// 10個以上購入したユーザーIDとユーザー名、購入した商品の数を取得
 select users.id, users.name, count(users.name) as "購入数"
 from users
 join sales_records
@@ -7,7 +7,7 @@ group by users.id
 having count(*) >= 10
 ;
 
--- 「サンダル」を購入したユーザーのidと名前を重複無く取得してください
+// 「サンダル」を購入したユーザーのidと名前を重複無く取得してください
 select users.id, users.name
 from users
 join sales_records
@@ -20,7 +20,7 @@ where sales_records.item_id = (
 group by users.id, users.name
 ;
 
--- 男性向け、女性向け、男女兼用商品ごとに指定されたデータを取得
+// 男性向け、女性向け、男女兼用商品ごとに指定されたデータを取得
 select items.gender, sum(items.price) as "売上額"
 from items
 join sales_records
@@ -28,7 +28,7 @@ on items.id = sales_records.item_id
 group by items.gender
 ;
 
--- 売上額が上位5位の商品の指定されたデータを取得
+// 売上額が上位5位の商品の指定されたデータを取得
 select items.id, items.name, sum(price) as "売上額"
 from items
 join sales_records
@@ -38,7 +38,7 @@ order by sum(price) desc
 limit 5
 ;
 
--- グレーパーカーより売上額が高い商品の指定されたデータを取得
+// グレーパーカーより売上額が高い商品の指定されたデータを取得
 select items.id, items.name, sum(items.price) as "売上額"
 from items
 join sales_records

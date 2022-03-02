@@ -1,8 +1,13 @@
 select *
 // *ですべてのカラムを呼び出す。nameやpriceなど指定可能
+
 from データベース名（user,purchasesなど）
-order by price desc //値段を降順に並べる。ascで昇順
-limit 5; //最大5件を呼び出す。limitはクエリの最後に記述
+
+order by price desc 
+//値段を降順に並べる。ascで昇順
+
+limit 5; 
+//最大5件を呼び出す。limitはクエリの最後に記述
 
 where category = "食費"
 AND　character_name = "ひつじ"
